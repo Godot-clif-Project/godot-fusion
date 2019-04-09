@@ -1,7 +1,10 @@
 extends SamusOnGround
 
 func enter(host: Samus) -> void:
-	host.get_node('AnimationPlayer').play('FrontTurn')
+	if host.is_looking_right:
+		host.get_node('AnimationPlayer').play_backwards('FrontTurn')
+	else:
+		host.get_node('AnimationPlayer').play('FrontTurn')
 	host.snap_enable = true
 	motion_less(host)
 
