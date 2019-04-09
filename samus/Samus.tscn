@@ -1,16 +1,25 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://samus/Samus.gd" type="Script" id=1]
 [ext_resource path="res://samus/Physics2D.gd" type="Script" id=2]
 [ext_resource path="res://samus/states/motion/on-ground/idle.gd" type="Script" id=3]
 [ext_resource path="res://samus/assets/Samus_IdleLeft-strip3.png" type="Texture" id=4]
-[ext_resource path="res://samus/assets/Samus_IdleRight-strip3t.png" type="Texture" id=5]
+[ext_resource path="res://samus/assets/Samus_IdleRight-strip3.png" type="Texture" id=5]
 [ext_resource path="res://samus/states/motion/on-ground/front-turn.gd" type="Script" id=6]
 [ext_resource path="res://samus/assets/Samus_FrontTurn-strip2.png" type="Texture" id=7]
 [ext_resource path="res://samus/states/motion/on-ground/move.gd" type="Script" id=8]
 [ext_resource path="res://samus/assets/Samus_MoveLeft-strip10.png" type="Texture" id=9]
 [ext_resource path="res://samus/assets/Samus_MoveRight-strip10.png" type="Texture" id=10]
-[ext_resource path="res://samus/StateVisualizer.gd" type="Script" id=11]
+[ext_resource path="res://samus/states/motion/in-air/jump-up.gd" type="Script" id=11]
+[ext_resource path="res://samus/assets/Samus_JumpUpLeft-strip3.png" type="Texture" id=12]
+[ext_resource path="res://samus/assets/Samus_JumpUpRight-strip3.png" type="Texture" id=13]
+[ext_resource path="res://samus/states/motion/in-air/jump-down.gd" type="Script" id=14]
+[ext_resource path="res://samus/assets/Samus_JumpDownLeft-strip1.png" type="Texture" id=15]
+[ext_resource path="res://samus/assets/Samus_JumpDownRight-strip1.png" type="Texture" id=16]
+[ext_resource path="res://samus/states/motion/in-air/jump-spin.gd" type="Script" id=17]
+[ext_resource path="res://samus/assets/Samus_JumpSpinLeft-strip9.png" type="Texture" id=18]
+[ext_resource path="res://samus/assets/Samus_JumpSpinRight-strip9.png" type="Texture" id=19]
+[ext_resource path="res://samus/StateVisualizer.gd" type="Script" id=20]
 
 [sub_resource type="Animation" id=1]
 resource_name = "FrontTurn"
@@ -61,9 +70,109 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-length = 0.5
+resource_name = "JumpDownLeft"
+length = 0.001
+step = 0.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("States/JumpDown/JumpDownLeft:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "JumpDownRight"
+length = 0.001
+step = 0.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("States/JumpDown/JumpDownRight:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "JumpSpinLeft"
+length = 0.36
 loop = true
-step = 0.05
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath("States/JumpSpin/JumpSpinLeft:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "JumpSpinRight"
+length = 0.36
+loop = true
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath("States/JumpSpin/JumpSpinRight:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("States/JumpUp/JumpUpLeft:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("States/JumpUp/JumpUpRight:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.6
+loop = true
+step = 0.06
 tracks/0/type = "value"
 tracks/0/path = NodePath("States/Move/MoveLeft:frame")
 tracks/0/interp = 1
@@ -71,17 +180,16 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42, 0.48, 0.54 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "MoveRight"
-length = 0.5
+[sub_resource type="Animation" id=11]
+length = 0.6
 loop = true
-step = 0.05
+step = 0.06
 tracks/0/type = "value"
 tracks/0/path = NodePath("States/Move/MoveRight:frame")
 tracks/0/interp = 1
@@ -89,50 +197,80 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42, 0.48, 0.54 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=6]
-height = 16.0
+[sub_resource type="CapsuleShape2D" id=12]
+radius = 9.0
+height = 18.0
+
+[sub_resource type="CapsuleShape2D" id=13]
+radius = 8.0
 
 [node name="Samus" type="KinematicBody2D"]
 script = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 1.2, 1.2 )
+offset_v = -1.0
+drag_margin_top = 0.45
+editor_draw_drag_margin = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/FrontTurn = SubResource( 1 )
 anims/IdleLeft = SubResource( 2 )
 anims/IdleRight = SubResource( 3 )
-anims/MoveLeft = SubResource( 4 )
-anims/MoveRight = SubResource( 5 )
+anims/JumpDownLeft = SubResource( 4 )
+anims/JumpDownRight = SubResource( 5 )
+anims/JumpSpinLeft = SubResource( 6 )
+anims/JumpSpinRight = SubResource( 7 )
+anims/JumpUpLeft = SubResource( 8 )
+anims/JumpUpRight = SubResource( 9 )
+anims/MoveLeft = SubResource( 10 )
+anims/MoveRight = SubResource( 11 )
 
 [node name="Physics2D" type="Node2D" parent="."]
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="GroundCollision" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1 )
-shape = SubResource( 6 )
+shape = SubResource( 12 )
+
+[node name="JumpStraightCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 1 )
+shape = SubResource( 13 )
+
+[node name="JumpSpinCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 1 )
+shape = SubResource( 13 )
 
 [node name="States" type="Node2D" parent="."]
 position = Vector2( 3, 0 )
 
 [node name="Idle" type="Node2D" parent="States"]
+editor/display_folded = true
 script = ExtResource( 3 )
 
 [node name="IdleLeft" type="Sprite" parent="States/Idle"]
+position = Vector2( -1, 0 )
 texture = ExtResource( 4 )
 hframes = 3
 frame = 1
 
 [node name="IdleRight" type="Sprite" parent="States/Idle"]
 visible = false
-position = Vector2( -6, 0 )
+position = Vector2( -5, 0 )
 texture = ExtResource( 5 )
 hframes = 3
 
 [node name="FrontTurn" type="Node2D" parent="States"]
+editor/display_folded = true
 script = ExtResource( 6 )
 
 [node name="FrontTurn" type="Sprite" parent="States/FrontTurn"]
@@ -143,21 +281,72 @@ hframes = 2
 frame = 1
 
 [node name="Move" type="Node2D" parent="States"]
+editor/display_folded = true
 script = ExtResource( 8 )
 
 [node name="MoveLeft" type="Sprite" parent="States/Move"]
 visible = false
-position = Vector2( -4, 0 )
+position = Vector2( -2, 0 )
 texture = ExtResource( 9 )
 hframes = 10
-frame = 2
+frame = 6
 
 [node name="MoveRight" type="Sprite" parent="States/Move"]
 visible = false
-position = Vector2( -5, 1 )
+position = Vector2( -6, 1 )
 texture = ExtResource( 10 )
 hframes = 10
 frame = 9
+
+[node name="JumpUp" type="Node2D" parent="States"]
+editor/display_folded = true
+script = ExtResource( 11 )
+
+[node name="JumpUpLeft" type="Sprite" parent="States/JumpUp"]
+visible = false
+position = Vector2( -3, 0 )
+texture = ExtResource( 12 )
+hframes = 3
+frame = 2
+
+[node name="JumpUpRight" type="Sprite" parent="States/JumpUp"]
+visible = false
+texture = ExtResource( 13 )
+hframes = 3
+frame = 2
+
+[node name="JumpDown" type="Node2D" parent="States"]
+editor/display_folded = true
+script = ExtResource( 14 )
+
+[node name="JumpDownLeft" type="Sprite" parent="States/JumpDown"]
+visible = false
+position = Vector2( -4, 0 )
+texture = ExtResource( 15 )
+
+[node name="JumpDownRight" type="Sprite" parent="States/JumpDown"]
+visible = false
+texture = ExtResource( 16 )
+
+[node name="JumpSpin" type="Node2D" parent="States"]
+script = ExtResource( 17 )
+
+[node name="JumpSpinLeft" type="Sprite" parent="States/JumpSpin"]
+visible = false
+position = Vector2( -3, 0 )
+texture = ExtResource( 18 )
+hframes = 9
+frame = 6
+
+[node name="JumpSpinRight" type="Sprite" parent="States/JumpSpin"]
+visible = false
+texture = ExtResource( 19 )
+hframes = 9
+frame = 6
+
+[node name="JumpSpinTimer" type="Timer" parent="States/JumpSpin"]
+wait_time = 0.15
+one_shot = true
 
 [node name="StateVisualizer" type="Label" parent="."]
 margin_left = -19.0
@@ -165,7 +354,7 @@ margin_top = -32.0
 margin_right = 21.0
 margin_bottom = -18.0
 text = "States"
-script = ExtResource( 11 )
+script = ExtResource( 20 )
 
 [node name="WIP" type="Node2D" parent="."]
 
