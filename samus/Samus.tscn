@@ -61,9 +61,9 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-length = 0.8
+length = 0.5
 loop = true
-step = 0.08
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("States/Move/MoveLeft:frame")
 tracks/0/interp = 1
@@ -71,7 +71,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
@@ -79,9 +79,9 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=5]
 resource_name = "MoveRight"
-length = 0.72
+length = 0.5
 loop = true
-step = 0.08
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("States/Move/MoveRight:frame")
 tracks/0/interp = 1
@@ -89,10 +89,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 
 [sub_resource type="CapsuleShape2D" id=6]
@@ -157,7 +157,7 @@ visible = false
 position = Vector2( -5, 1 )
 texture = ExtResource( 10 )
 hframes = 10
-frame = 4
+frame = 9
 
 [node name="StateVisualizer" type="Label" parent="."]
 margin_left = -19.0
