@@ -3,14 +3,29 @@
 extends Node
 class_name State
 
-
 signal finished(next_state_name)
+
+var left_animation: String = ''
+var right_animation: String = ''
 
 
 func _ready():
 	set_process(false)
 	set_physics_process(false)
 	set_process_input(false)
+
+
+func hide_previous_animation(animation_name: String) -> void:
+	self.get_node(animation_name).hide()
+
+
+func show_current_animation(animation_name: String) -> void:
+	self.get_node(animation_name).show()
+
+
+func set_animations(new_left_animation: String, new_right_animation) -> void:
+	left_animation = new_left_animation
+	right_animation = new_right_animation
 
 
 # Initialize the state. E.g. change the animation

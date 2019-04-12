@@ -12,19 +12,28 @@ var states_stack: Array = []
 onready var states_map: Dictionary = {
 	'Idle': $States/Idle,
 	'FrontTurn': $States/FrontTurn,
-	'Move': $States/Move
+	'Move': $States/Move,
+	'JumpUp': $States/JumpUp,
+	'JumpDown': $States/JumpDown,
+	'JumpSpin': $States/JumpSpin
 }
 
 const left_animations_map: Dictionary = {
-  'Idle': 'IdleLeft',
-  'Move': 'MoveLeft',
-  'FrontTurn': 'FrontTurn'
+	'Idle': 'IdleLeft',
+	'Move': 'MoveLeft',
+	'FrontTurn': 'FrontTurn',
+	'JumpUp': 'JumpUpLeft',
+	'JumpDown': 'JumpDownLeft',
+	'JumpSpin': 'JumpSpinLeft'
 }
 
 const right_animations_map: Dictionary = {
-  'Idle': 'IdleRight',
-  'Move': 'MoveRight',
-  'FrontTurn': 'FrontTurn'
+	'Idle': 'IdleRight',
+	'Move': 'MoveRight',
+	'FrontTurn': 'FrontTurn',
+	'JumpUp': 'JumpUpRight',
+	'JumpDown': 'JumpDownRight',
+	'JumpSpin': 'JumpSpinRight'
 }
 
 var is_looking_right: bool = false
@@ -48,7 +57,6 @@ var knockback_force: Vector2 = Vector2(0, 0)
 
 func _ready() -> void:
 	# Animation Player sinal
-	$AnimationPlayer.connect('animation_started', self, '_on_AnimationPlayer_animation_started')
 	$AnimationPlayer.connect('animation_finished', self, '_on_AnimationPlayer_animation_finished')
 
 	# connect state with finished signal
@@ -81,7 +89,7 @@ func _change_state(state_name: String) -> void:
 	current_state.exit(self)
 
 	# hide previous animation
-	current_state.get_node(animations_map[current_state.get_name()]).hide()
+	current_state.hide_previous_animation(animations_map[current_state.get_name()])
 
 	if state_name == 'Previous': # previous state
 		states_stack.pop_front()
@@ -94,6 +102,8 @@ func _change_state(state_name: String) -> void:
 	current_state = states_stack[0]
 
 	if current_state.get_name() != 'Previous':
+		current_state.set_animations(left_animations_map[current_state.get_name()], right_animations_map[current_state.get_name()])
+		current_state.show_current_animation(animations_map[current_state.get_name()])
 		current_state.enter(self)
 
 	emit_signal('state_changed', states_stack)
@@ -101,7 +111,3 @@ func _change_state(state_name: String) -> void:
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	current_state._on_animation_finished(anim_name)
-
-
-func _on_AnimationPlayer_animation_started(anim_name):
-	current_state.get_node(anim_name).show()

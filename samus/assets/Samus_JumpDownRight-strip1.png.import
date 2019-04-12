@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Samus_IdleRight-strip3t.png-15dd6cda0bfffff29573c55dc0bb6e65.stex"
+path="res://.import/Samus_JumpDownRight-strip1.png-ef0bdb2478fb3ab8abfd9684d4e15fe0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://samus/assets/Samus_IdleRight-strip3t.png"
-dest_files=[ "res://.import/Samus_IdleRight-strip3t.png-15dd6cda0bfffff29573c55dc0bb6e65.stex" ]
+source_file="res://samus/assets/Samus_JumpDownRight-strip1.png"
+dest_files=[ "res://.import/Samus_JumpDownRight-strip1.png-ef0bdb2478fb3ab8abfd9684d4e15fe0.stex" ]
 
 [params]
 
