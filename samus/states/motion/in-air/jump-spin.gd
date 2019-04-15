@@ -1,6 +1,7 @@
 extends SamusJump
 
 export (float) var JUMP_FORCE = 500.0
+export (float) var MIN_SPEED = 75.0
 var check_grounded = false
 
 func _ready():
@@ -31,7 +32,12 @@ func exit(host: Samus) -> void:
 
 
 func update(host: Samus, delta: float) -> void:
-	.update(host, delta)
+	var input_direction: Vector2 = get_input_direction()
+	update_look_direction(host, input_direction)
+	if not input_direction:
+		move(host, host.look_direction, MIN_SPEED, ACCELERATION)
+	else:
+		move(host, input_direction, SPEED, ACCELERATION)
 
 	if host.is_grounded and check_grounded:
 		emit_signal('finished', 'Idle')
