@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://samus/Samus.gd" type="Script" id=1]
 [ext_resource path="res://samus/Physics2D.gd" type="Script" id=2]
@@ -25,8 +25,9 @@
 [ext_resource path="res://samus/states/combat/firing-move.gd" type="Script" id=23]
 [ext_resource path="res://samus/assets/Samus_FiringMoveLeft-strip10.png" type="Texture" id=24]
 [ext_resource path="res://samus/assets/Samus_FiringMoveRight-strip10.png" type="Texture" id=25]
-[ext_resource path="res://samus/beam/assets/Beam_Firing-strip2.png" type="Texture" id=26]
-[ext_resource path="res://samus/StateVisualizer.gd" type="Script" id=27]
+[ext_resource path="res://samus/beam/assets/Beam_Firing_1-strip1.png" type="Texture" id=26]
+[ext_resource path="res://samus/beam/assets/Beam_Firing_2-strip1.png" type="Texture" id=27]
+[ext_resource path="res://samus/StateVisualizer.gd" type="Script" id=28]
 
 [sub_resource type="Animation" id=1]
 resource_name = "FiringIdleLeft"
@@ -45,28 +46,28 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Spawn/Firing:visible")
+tracks/1/path = NodePath("Spawn/SpawnPosition:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 12, -2 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Spawn/Firing:frame")
+tracks/2/path = NodePath("Spawn/Firing:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.05 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 14, -2 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -86,110 +87,112 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Spawn/Firing:frame")
+tracks/1/path = NodePath("Spawn/SpawnPosition:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0833333 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 12, -2 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Spawn/Firing:visible")
+tracks/2/path = NodePath("Spawn/Firing:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 14, -2 ) ]
 }
 
 [sub_resource type="Animation" id=3]
 resource_name = "FiringMoveLeft"
 length = 0.6
+loop = true
 step = 0.06
 tracks/0/type = "value"
-tracks/0/path = NodePath("Spawn/Firing:frame")
+tracks/0/path = NodePath("States/FiringMove/FiringMoveLeft:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0833333 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42, 0.48, 0.54 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Spawn/Firing:visible")
+tracks/1/path = NodePath("Spawn/SpawnPosition:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 15, -4 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("States/FiringMove/FiringMoveLeft:frame")
+tracks/2/path = NodePath("Spawn/Firing:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42, 0.48 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 15, -4 ) ]
 }
 
 [sub_resource type="Animation" id=4]
 resource_name = "FiringMoveRight"
 length = 0.6
+loop = true
 step = 0.06
 tracks/0/type = "value"
-tracks/0/path = NodePath("Spawn/Firing:frame")
+tracks/0/path = NodePath("States/FiringMove/FiringMoveRight:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0833333 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42, 0.48, 0.54 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Spawn/Firing:visible")
+tracks/1/path = NodePath("Spawn/Firing:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 15, -4 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("States/FiringMove/FiringMoveRight:frame")
+tracks/2/path = NodePath("Spawn/SpawnPosition:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42, 0.48 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 12, -2 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -376,6 +379,14 @@ height = 18.0
 [sub_resource type="CapsuleShape2D" id=17]
 radius = 8.0
 
+[sub_resource type="SpriteFrames" id=18]
+animations = [ {
+"frames": [ ExtResource( 26 ), ExtResource( 27 ) ],
+"loop": false,
+"name": "default",
+"speed": 2.0
+} ]
+
 [node name="Samus" type="KinematicBody2D" groups=[
 "Samus",
 ]]
@@ -546,7 +557,6 @@ position = Vector2( 2, 0 )
 texture = ExtResource( 24 )
 offset = Vector2( -3, 0 )
 hframes = 10
-frame = 1
 
 [node name="FiringMoveRight" type="Sprite" parent="States/FiringMove"]
 visible = false
@@ -555,18 +565,20 @@ texture = ExtResource( 25 )
 hframes = 10
 frame = 9
 
+[node name="FiringMoveTimer" type="Timer" parent="States/FiringMove"]
+wait_time = 2.0
+
 [node name="Spawn" type="Node2D" parent="."]
 scale = Vector2( -1, 1 )
 
 [node name="SpawnPosition" type="Position2D" parent="Spawn"]
-position = Vector2( 15, -2 )
+position = Vector2( 12, -2 )
 
-[node name="Firing" type="Sprite" parent="Spawn"]
+[node name="Firing" type="AnimatedSprite" parent="Spawn"]
 visible = false
-position = Vector2( 16, -2 )
-texture = ExtResource( 26 )
-hframes = 2
-frame = 1
+position = Vector2( 15, -4 )
+frames = SubResource( 18 )
+speed_scale = 5.0
 
 [node name="StateVisualizer" type="Label" parent="."]
 margin_left = -19.0
@@ -574,7 +586,8 @@ margin_top = -32.0
 margin_right = 21.0
 margin_bottom = -18.0
 text = "States"
-script = ExtResource( 27 )
+script = ExtResource( 28 )
 
 [node name="WIP" type="Node2D" parent="."]
 
+[connection signal="timeout" from="States/FiringMove/FiringMoveTimer" to="States/FiringMove" method="_on_FiringMoveTimer_timeout"]

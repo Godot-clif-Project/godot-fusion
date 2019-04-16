@@ -14,6 +14,7 @@ func handle_input(host: Samus, event: InputEvent) -> InputEvent:
 	return .handle_input(host, event)
 
 
+#warning-ignore:unused_argument
 func update(host: Samus, delta: float) -> void:
 	var input_direction: Vector2 = get_input_direction()
 	if input_direction.x:

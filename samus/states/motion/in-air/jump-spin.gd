@@ -33,6 +33,7 @@ func exit(host: Samus) -> void:
 	.exit(host)
 
 
+#warning-ignore:unused_argument
 func update(host: Samus, delta: float) -> void:
 	var input_direction: Vector2 = get_input_direction()
 	update_look_direction(host, input_direction)
