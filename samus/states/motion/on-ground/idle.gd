@@ -7,6 +7,13 @@ func enter(host: Samus) -> void:
 	motion_less(host)
 
 
+func handle_input(host: Samus, event: InputEvent) -> InputEvent:
+	if event.is_action_pressed('fire'):
+		emit_signal('finished', 'FiringIdle')
+
+	return .handle_input(host, event)
+
+
 func update(host: Samus, delta: float) -> void:
 	var input_direction: Vector2 = get_input_direction()
 	if input_direction.x:
