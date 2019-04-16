@@ -17,6 +17,7 @@ onready var states_map: Dictionary = {
 	'JumpDown': $States/JumpDown,
 	'JumpSpin': $States/JumpSpin,
 	'FiringIdle': $States/FiringIdle,
+	'FiringMove': $States/FiringMove,
 }
 
 const left_animations_map: Dictionary = {
@@ -26,7 +27,8 @@ const left_animations_map: Dictionary = {
 	'JumpUp': 'JumpUpLeft',
 	'JumpDown': 'JumpDownLeft',
 	'JumpSpin': 'JumpSpinLeft',
-	'FiringIdle': 'FiringIdleLeft'
+	'FiringIdle': 'FiringIdleLeft',
+	'FiringMove': 'FiringMoveLeft'
 }
 
 const right_animations_map: Dictionary = {
@@ -36,7 +38,8 @@ const right_animations_map: Dictionary = {
 	'JumpUp': 'JumpUpRight',
 	'JumpDown': 'JumpDownRight',
 	'JumpSpin': 'JumpSpinRight',
-	'FiringIdle': 'FiringIdleRight'
+	'FiringIdle': 'FiringIdleRight',
+	'FiringMove': 'FiringMoveRight'
 }
 
 var is_looking_right: bool = false
@@ -114,4 +117,4 @@ func _change_state(state_name: String) -> void:
 
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
-	current_state._on_animation_finished(anim_name)
+	current_state._on_animation_finished(anim_name, self)

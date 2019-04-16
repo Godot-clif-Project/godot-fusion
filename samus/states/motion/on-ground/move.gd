@@ -13,12 +13,17 @@ func enter(host: Samus) -> void:
 	direction_at_enter = host.look_direction
 	host.snap_enable = true
 
+
 func handle_input(host: Samus, event: InputEvent) -> InputEvent:
 	if event.is_action_pressed('move_right'):
 		emit_signal('finished', 'FrontTurn')
 	elif event.is_action_pressed('move_left'):
 		emit_signal('finished', 'FrontTurn')
+	elif event.is_action_pressed('fire'):
+		emit_signal('finished', 'FiringMove')
+
 	return .handle_input(host, event)
+
 
 #warning-ignore:unused_argument
 func update(host: Samus, delta: float) -> void:
