@@ -1,6 +1,7 @@
 extends SamusMotion
 class_name SamusJump
 
+#warning-ignore:unused_class_variable
 export (float) var MIN_JUMP_FORCE = 100.0
 export (float) var ACCELERATION = 0.25
 export (float) var SPEED = 25.0
@@ -19,11 +20,14 @@ func handle_input(host: Samus, event: InputEvent) -> InputEvent:
 	return .handle_input(host, event)
 
 
+#warning-ignore:unused_argument
 func exit(host: Samus):
 	self.get_node(left_animation).hide()
 	self.get_node(right_animation).hide()
 
 
+#warning-ignore:unused_argument
+#warning-ignore:unused_argument
 func update(host: Samus, delta: float) -> void:
 	var input_direction: Vector2 = get_input_direction()
 	update_look_direction(host, input_direction)

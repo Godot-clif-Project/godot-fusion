@@ -1,6 +1,6 @@
 extends Area2D
 
-var PROJECTILE_SPEED: int = 300
+var PROJECTILE_SPEED: int = 500
 var direction: Vector2 = Vector2(1, 0) setget set_direction
 var update_motion: bool = true
 

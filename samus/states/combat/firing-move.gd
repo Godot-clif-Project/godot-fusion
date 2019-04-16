@@ -1,17 +1,16 @@
-extends SamusOnGround
+extends SamusFiring
 
-
-# pixels/sec
-const SPEED: float = 150.0 
-const ACCELERATION: float = 1.0
-
-var direction_at_enter: Vector2 = Vector2()
+const BEAM_SCENE: Resource = preload('res://samus/beam/Beam.tscn')
 
 
 func enter(host: Samus) -> void:
-	host.get_node('AnimationPlayer').play(host.animations_map['Move'])
-	direction_at_enter = host.look_direction
-	host.snap_enable = true
+	host.get_node('AnimationPlayer').play(host.animations_map['FiringMove'])
+	fire_projectile(BEAM_SCENE, host)
+	$FiringMoveTimer.start()
+
+
+func exit(host: Samus) -> void:
+	$FiringMoveTimer.stop()
 
 
 func handle_input(host: Samus, event: InputEvent) -> InputEvent:
@@ -19,8 +18,11 @@ func handle_input(host: Samus, event: InputEvent) -> InputEvent:
 		emit_signal('finished', 'FrontTurn')
 	elif event.is_action_pressed('move_left'):
 		emit_signal('finished', 'FrontTurn')
+	elif event.is_action_pressed('jump'):
+		emit_signal('finished', 'JumpSpin')
 	elif event.is_action_pressed('fire'):
-		emit_signal('finished', 'FiringMove')
+		fire_projectile(BEAM_SCENE, host)
+		$FiringMoveTimer.start()
 
 	return .handle_input(host, event)
 
@@ -31,5 +33,8 @@ func update(host: Samus, delta: float) -> void:
 	update_look_direction(host, input_direction)
 	if not input_direction:
 		emit_signal('finished', 'Idle')
-	
-	move(host, input_direction, SPEED, ACCELERATION)
+
+
+# connect throught editor
+func _on_FiringMoveTimer_timeout():
+	emit_signal('finished', 'Move')
