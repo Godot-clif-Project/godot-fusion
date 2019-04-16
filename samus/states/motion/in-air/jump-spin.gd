@@ -12,10 +12,12 @@ func _on_Timeout():
 	check_grounded = true
 
 
+
 func enter(host: Samus) -> void:
 	host.get_node('AnimationPlayer').play(host.animations_map['JumpSpin'])
 	host.snap_enable = false
 	host.velocity.y = -JUMP_FORCE
+	SPEED = abs(host.velocity.x)
 	$JumpSpinTimer.wait_time = .15
 	$JumpSpinTimer.start()
 
