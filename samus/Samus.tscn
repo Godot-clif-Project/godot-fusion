@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://samus/Samus.gd" type="Script" id=1]
 [ext_resource path="res://samus/Physics2D.gd" type="Script" id=2]
@@ -19,7 +19,93 @@
 [ext_resource path="res://samus/states/motion/in-air/jump-spin.gd" type="Script" id=17]
 [ext_resource path="res://samus/assets/Samus_JumpSpinLeft-strip9.png" type="Texture" id=18]
 [ext_resource path="res://samus/assets/Samus_JumpSpinRight-strip9.png" type="Texture" id=19]
-[ext_resource path="res://samus/StateVisualizer.gd" type="Script" id=20]
+[ext_resource path="res://samus/states/combat/firing-idle.gd" type="Script" id=20]
+[ext_resource path="res://samus/assets/Samus_FiringIdleLeft-strip1.png" type="Texture" id=21]
+[ext_resource path="res://samus/assets/Samus_FiringIdleRight-strip1.png" type="Texture" id=22]
+[ext_resource path="res://samus/beam/assets/Beam_Firing-strip2.png" type="Texture" id=23]
+[ext_resource path="res://samus/StateVisualizer.gd" type="Script" id=24]
+
+[sub_resource type="Animation" id=14]
+resource_name = "FiringIdleLeft"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("States/FiringIdle/FiringIdleLeft:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Spawn/Firing:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Spawn/Firing:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "FiringIdleRight"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("States/FiringIdle/FiringIdleLeft:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Spawn/Firing:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0833333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Spawn/Firing:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "FrontTurn"
@@ -210,7 +296,9 @@ height = 18.0
 [sub_resource type="CapsuleShape2D" id=13]
 radius = 8.0
 
-[node name="Samus" type="KinematicBody2D"]
+[node name="Samus" type="KinematicBody2D" groups=[
+"Samus",
+]]
 script = ExtResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -221,6 +309,8 @@ drag_margin_top = 0.45
 editor_draw_drag_margin = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/FiringIdleLeft = SubResource( 14 )
+anims/FiringIdleRight = SubResource( 15 )
 anims/FrontTurn = SubResource( 1 )
 anims/IdleLeft = SubResource( 2 )
 anims/IdleRight = SubResource( 3 )
@@ -254,7 +344,6 @@ shape = SubResource( 13 )
 position = Vector2( 3, 0 )
 
 [node name="Idle" type="Node2D" parent="States"]
-editor/display_folded = true
 script = ExtResource( 3 )
 
 [node name="IdleLeft" type="Sprite" parent="States/Idle"]
@@ -348,13 +437,39 @@ frame = 6
 wait_time = 0.15
 one_shot = true
 
+[node name="FiringIdle" type="Node2D" parent="States"]
+script = ExtResource( 20 )
+
+[node name="FiringIdleLeft" type="Sprite" parent="States/FiringIdle"]
+visible = false
+position = Vector2( -3, 2 )
+texture = ExtResource( 21 )
+
+[node name="FiringIdleRight" type="Sprite" parent="States/FiringIdle"]
+visible = false
+position = Vector2( -4, 3 )
+texture = ExtResource( 22 )
+
+[node name="Spawn" type="Node2D" parent="."]
+scale = Vector2( -1, 1 )
+
+[node name="SpawnPosition" type="Position2D" parent="Spawn"]
+position = Vector2( 15, -2 )
+
+[node name="Firing" type="Sprite" parent="Spawn"]
+visible = false
+position = Vector2( 16, -2 )
+texture = ExtResource( 23 )
+hframes = 2
+frame = 1
+
 [node name="StateVisualizer" type="Label" parent="."]
 margin_left = -19.0
 margin_top = -32.0
 margin_right = 21.0
 margin_bottom = -18.0
 text = "States"
-script = ExtResource( 20 )
+script = ExtResource( 24 )
 
 [node name="WIP" type="Node2D" parent="."]
 

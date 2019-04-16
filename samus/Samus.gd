@@ -15,7 +15,8 @@ onready var states_map: Dictionary = {
 	'Move': $States/Move,
 	'JumpUp': $States/JumpUp,
 	'JumpDown': $States/JumpDown,
-	'JumpSpin': $States/JumpSpin
+	'JumpSpin': $States/JumpSpin,
+	'FiringIdle': $States/FiringIdle,
 }
 
 const left_animations_map: Dictionary = {
@@ -24,7 +25,8 @@ const left_animations_map: Dictionary = {
 	'FrontTurn': 'FrontTurn',
 	'JumpUp': 'JumpUpLeft',
 	'JumpDown': 'JumpDownLeft',
-	'JumpSpin': 'JumpSpinLeft'
+	'JumpSpin': 'JumpSpinLeft',
+	'FiringIdle': 'FiringIdleLeft'
 }
 
 const right_animations_map: Dictionary = {
@@ -33,13 +35,15 @@ const right_animations_map: Dictionary = {
 	'FrontTurn': 'FrontTurn',
 	'JumpUp': 'JumpUpRight',
 	'JumpDown': 'JumpDownRight',
-	'JumpSpin': 'JumpSpinRight'
+	'JumpSpin': 'JumpSpinRight',
+	'FiringIdle': 'FiringIdleRight'
 }
 
 var is_looking_right: bool = false
 
 # cache
 onready var Physics2D: Node2D = $Physics2D
+onready var Spawn: Node2D = $Spawn
 onready var animations_map: Dictionary = left_animations_map
 
 # velocity

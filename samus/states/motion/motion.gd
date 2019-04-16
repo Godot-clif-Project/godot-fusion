@@ -14,6 +14,7 @@ func update_look_direction(host: Samus, direction: Vector2) -> void:
 		host.look_direction = direction
 		host.is_looking_right = direction.x == 1
 		host.animations_map = host.right_animations_map if host.is_looking_right else host.left_animations_map
+		host.Spawn.scale.x = direction.x
 	if not direction.x in [-1, 1]:
 		return
 
