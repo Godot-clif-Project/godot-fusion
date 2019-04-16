@@ -3,7 +3,7 @@ class_name SamusJump
 
 export (float) var MIN_JUMP_FORCE = 100.0
 export (float) var ACCELERATION = 0.25
-export (float) var SPEED = 10.0
+export (float) var SPEED = 25.0
 
 
 func handle_input(host: Samus, event: InputEvent) -> InputEvent:
