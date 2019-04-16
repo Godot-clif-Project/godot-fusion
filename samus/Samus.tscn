@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://samus/Samus.gd" type="Script" id=1]
 [ext_resource path="res://samus/Physics2D.gd" type="Script" id=2]
@@ -22,10 +22,13 @@
 [ext_resource path="res://samus/states/combat/firing-idle.gd" type="Script" id=20]
 [ext_resource path="res://samus/assets/Samus_FiringIdleLeft-strip1.png" type="Texture" id=21]
 [ext_resource path="res://samus/assets/Samus_FiringIdleRight-strip1.png" type="Texture" id=22]
-[ext_resource path="res://samus/beam/assets/Beam_Firing-strip2.png" type="Texture" id=23]
-[ext_resource path="res://samus/StateVisualizer.gd" type="Script" id=24]
+[ext_resource path="res://samus/states/combat/firing-move.gd" type="Script" id=23]
+[ext_resource path="res://samus/assets/Samus_FiringMoveLeft-strip10.png" type="Texture" id=24]
+[ext_resource path="res://samus/assets/Samus_FiringMoveRight-strip10.png" type="Texture" id=25]
+[ext_resource path="res://samus/beam/assets/Beam_Firing-strip2.png" type="Texture" id=26]
+[ext_resource path="res://samus/StateVisualizer.gd" type="Script" id=27]
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=1]
 resource_name = "FiringIdleLeft"
 length = 0.1
 step = 0.05
@@ -66,7 +69,7 @@ tracks/2/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=2]
 resource_name = "FiringIdleRight"
 length = 0.1
 step = 0.05
@@ -107,8 +110,89 @@ tracks/2/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "FrontTurn"
+[sub_resource type="Animation" id=3]
+resource_name = "FiringMoveLeft"
+length = 0.6
+step = 0.06
+tracks/0/type = "value"
+tracks/0/path = NodePath("Spawn/Firing:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Spawn/Firing:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("States/FiringMove/FiringMoveLeft:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42, 0.48 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "FiringMoveRight"
+length = 0.6
+step = 0.06
+tracks/0/type = "value"
+tracks/0/path = NodePath("Spawn/Firing:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Spawn/Firing:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("States/FiringMove/FiringMoveRight:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42, 0.48 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+
+[sub_resource type="Animation" id=5]
 length = 0.1
 step = 0.05
 tracks/0/type = "value"
@@ -124,7 +208,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=6]
 length = 0.9
 loop = true
 tracks/0/type = "value"
@@ -140,7 +224,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=7]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("States/Idle/IdleRight:frame")
@@ -155,8 +239,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "JumpDownLeft"
+[sub_resource type="Animation" id=8]
 length = 0.001
 step = 0.0
 tracks/0/type = "value"
@@ -172,8 +255,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "JumpDownRight"
+[sub_resource type="Animation" id=9]
 length = 0.001
 step = 0.0
 tracks/0/type = "value"
@@ -189,8 +271,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "JumpSpinLeft"
+[sub_resource type="Animation" id=10]
 length = 0.36
 loop = true
 step = 0.04
@@ -207,8 +288,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "JumpSpinRight"
+[sub_resource type="Animation" id=11]
 length = 0.36
 loop = true
 step = 0.04
@@ -225,7 +305,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=12]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("States/JumpUp/JumpUpLeft:frame")
@@ -240,7 +320,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=13]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("States/JumpUp/JumpUpRight:frame")
@@ -255,7 +335,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=14]
 length = 0.6
 loop = true
 step = 0.06
@@ -272,7 +352,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=15]
 length = 0.6
 loop = true
 step = 0.06
@@ -289,11 +369,11 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=12]
+[sub_resource type="CapsuleShape2D" id=16]
 radius = 9.0
 height = 18.0
 
-[sub_resource type="CapsuleShape2D" id=13]
+[sub_resource type="CapsuleShape2D" id=17]
 radius = 8.0
 
 [node name="Samus" type="KinematicBody2D" groups=[
@@ -312,41 +392,44 @@ drag_margin_bottom = 0.1
 editor_draw_drag_margin = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/FiringIdleLeft = SubResource( 14 )
-anims/FiringIdleRight = SubResource( 15 )
-anims/FrontTurn = SubResource( 1 )
-anims/IdleLeft = SubResource( 2 )
-anims/IdleRight = SubResource( 3 )
-anims/JumpDownLeft = SubResource( 4 )
-anims/JumpDownRight = SubResource( 5 )
-anims/JumpSpinLeft = SubResource( 6 )
-anims/JumpSpinRight = SubResource( 7 )
-anims/JumpUpLeft = SubResource( 8 )
-anims/JumpUpRight = SubResource( 9 )
-anims/MoveLeft = SubResource( 10 )
-anims/MoveRight = SubResource( 11 )
+anims/FiringIdleLeft = SubResource( 1 )
+anims/FiringIdleRight = SubResource( 2 )
+anims/FiringMoveLeft = SubResource( 3 )
+anims/FiringMoveRight = SubResource( 4 )
+anims/FrontTurn = SubResource( 5 )
+anims/IdleLeft = SubResource( 6 )
+anims/IdleRight = SubResource( 7 )
+anims/JumpDownLeft = SubResource( 8 )
+anims/JumpDownRight = SubResource( 9 )
+anims/JumpSpinLeft = SubResource( 10 )
+anims/JumpSpinRight = SubResource( 11 )
+anims/JumpUpLeft = SubResource( 12 )
+anims/JumpUpRight = SubResource( 13 )
+anims/MoveLeft = SubResource( 14 )
+anims/MoveRight = SubResource( 15 )
 
 [node name="Physics2D" type="Node2D" parent="."]
 script = ExtResource( 2 )
 
 [node name="GroundCollision" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1 )
-shape = SubResource( 12 )
+shape = SubResource( 16 )
 
 [node name="JumpStraightCollision" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 1 )
-shape = SubResource( 13 )
+shape = SubResource( 17 )
 
 [node name="JumpSpinCollision" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 1 )
-shape = SubResource( 13 )
+shape = SubResource( 17 )
 
 [node name="States" type="Node2D" parent="."]
 position = Vector2( 3, 0 )
 
 [node name="Idle" type="Node2D" parent="States"]
+editor/display_folded = true
 script = ExtResource( 3 )
 
 [node name="IdleLeft" type="Sprite" parent="States/Idle"]
@@ -373,7 +456,6 @@ hframes = 2
 frame = 1
 
 [node name="Move" type="Node2D" parent="States"]
-editor/display_folded = true
 script = ExtResource( 8 )
 
 [node name="MoveLeft" type="Sprite" parent="States/Move"]
@@ -385,10 +467,10 @@ frame = 6
 
 [node name="MoveRight" type="Sprite" parent="States/Move"]
 visible = false
-position = Vector2( -6, 1 )
+position = Vector2( -6, 0 )
 texture = ExtResource( 10 )
 hframes = 10
-frame = 9
+frame = 1
 
 [node name="JumpUp" type="Node2D" parent="States"]
 editor/display_folded = true
@@ -421,6 +503,7 @@ visible = false
 texture = ExtResource( 16 )
 
 [node name="JumpSpin" type="Node2D" parent="States"]
+editor/display_folded = true
 script = ExtResource( 17 )
 
 [node name="JumpSpinLeft" type="Sprite" parent="States/JumpSpin"]
@@ -441,6 +524,7 @@ wait_time = 0.15
 one_shot = true
 
 [node name="FiringIdle" type="Node2D" parent="States"]
+editor/display_folded = true
 script = ExtResource( 20 )
 
 [node name="FiringIdleLeft" type="Sprite" parent="States/FiringIdle"]
@@ -453,6 +537,24 @@ visible = false
 position = Vector2( -4, 3 )
 texture = ExtResource( 22 )
 
+[node name="FiringMove" type="Node2D" parent="States"]
+script = ExtResource( 23 )
+
+[node name="FiringMoveLeft" type="Sprite" parent="States/FiringMove"]
+visible = false
+position = Vector2( 2, 0 )
+texture = ExtResource( 24 )
+offset = Vector2( -3, 0 )
+hframes = 10
+frame = 1
+
+[node name="FiringMoveRight" type="Sprite" parent="States/FiringMove"]
+visible = false
+position = Vector2( -6, 0 )
+texture = ExtResource( 25 )
+hframes = 10
+frame = 9
+
 [node name="Spawn" type="Node2D" parent="."]
 scale = Vector2( -1, 1 )
 
@@ -462,7 +564,7 @@ position = Vector2( 15, -2 )
 [node name="Firing" type="Sprite" parent="Spawn"]
 visible = false
 position = Vector2( 16, -2 )
-texture = ExtResource( 23 )
+texture = ExtResource( 26 )
 hframes = 2
 frame = 1
 
@@ -472,7 +574,7 @@ margin_top = -32.0
 margin_right = 21.0
 margin_bottom = -18.0
 text = "States"
-script = ExtResource( 24 )
+script = ExtResource( 27 )
 
 [node name="WIP" type="Node2D" parent="."]
 

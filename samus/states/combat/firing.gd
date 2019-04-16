@@ -1,5 +1,5 @@
-extends State
-class_name Firing
+extends SamusMotion
+class_name SamusFiring
 
 
 func fire_projectile(scene:Resource, global_position: Vector2, direction: Vector2, node: Node) -> void:

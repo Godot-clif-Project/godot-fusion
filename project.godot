@@ -9,15 +9,15 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "State",
-"class": "Firing",
-"language": "GDScript",
-"path": "res://samus/states/combat/firing.gd"
-}, {
 "base": "KinematicBody2D",
 "class": "Samus",
 "language": "GDScript",
 "path": "res://samus/Samus.gd"
+}, {
+"base": "SamusMotion",
+"class": "SamusFiring",
+"language": "GDScript",
+"path": "res://samus/states/combat/firing.gd"
 }, {
 "base": "SamusMotion",
 "class": "SamusJump",
@@ -40,8 +40,8 @@ _global_script_classes=[ {
 "path": "res://samus/states/state.gd"
 } ]
 _global_script_class_icons={
-"Firing": "",
 "Samus": "",
+"SamusFiring": "",
 "SamusJump": "",
 "SamusMotion": "",
 "SamusOnGround": "",
