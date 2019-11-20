@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Game Boy Advance - Metroid Fusion - Backgrounds.png-36209e2dbe941dd30ae0509a1610bba5.stex"
+path="res://.import/Game Boy Advance - Metroid Fusion - Samus Aran.png-ac167bf5d45645aaa62ee90d33d123dc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/Game Boy Advance - Metroid Fusion - Backgrounds.png"
-dest_files=[ "res://.import/Game Boy Advance - Metroid Fusion - Backgrounds.png-36209e2dbe941dd30ae0509a1610bba5.stex" ]
+source_file="res://vendors/Game Boy Advance - Metroid Fusion - Samus Aran.png"
+dest_files=[ "res://.import/Game Boy Advance - Metroid Fusion - Samus Aran.png-ac167bf5d45645aaa62ee90d33d123dc.stex" ]
 
 [params]
 

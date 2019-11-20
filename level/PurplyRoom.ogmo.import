@@ -1,0 +1,20 @@
+[remap]
+
+importer="levrault.ogmo_importer"
+type="PackedScene"
+path="res://.import/PurplyRoom.ogmo-01ce2780f2f234e48f22dd488b671601.scn"
+
+[deps]
+
+source_file="res://level/PurplyRoom.ogmo"
+dest_files=[ "res://.import/PurplyRoom.ogmo-01ce2780f2f234e48f22dd488b671601.scn" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=false
+uv_clip=true
+image_flags=7
+collision_layer=1
+embed_internal_images=false
+post_import_script=""
