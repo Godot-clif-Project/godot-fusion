@@ -22,7 +22,7 @@ func set_direction(new_direction: Vector2) -> void:
 	$Beam.scale.x = new_direction.x
 
 
-func _on_Body_entered(body: PhysicsBody2D) -> void:
+func _on_Body_entered(body: Object) -> void:
 	if body.get_collision_mask_bit(0):
 		update_motion = false
 		$AnimationPlayer.play('Explode')
