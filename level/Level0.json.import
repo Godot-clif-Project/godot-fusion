@@ -11,10 +11,3 @@ dest_files=[ "res://.import/Level0.json-144c8099c81b056b82666f0a4e85816d.scn" ]
 
 [params]
 
-custom_properties=true
-tile_metadata=false
-uv_clip=true
-image_flags=7
-collision_layer=1
-embed_internal_images=false
-post_import_script=""

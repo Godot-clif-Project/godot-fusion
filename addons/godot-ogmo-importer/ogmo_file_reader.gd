@@ -50,11 +50,34 @@ var entities: Array = []
 #ogmo_tileset
 var tilesets: Array = []
 
-var OgmoTileset = preload('ogmo_tileset.gd')
-
 
 func build(config, options):
-	for t in config.tilesets:
-		var tileset = OgmoTileset.new()
-		tileset.build(t)
-		tilesets.append(tileset)
+	build_tileset_for_scene(config.tilesets)
+
+
+func build_tileset_for_scene(tilesets):
+	var result = TileSet.new()
+	var err = ERR_INVALID_DATA
+	var meta = {}
+
+	for tileset in tilesets:
+		var image = null
+		# image
+		# load from path
+		if not tileset.path.empty():
+			image = ResourceLoader.load(tileset.path, 'ImageTexture')
+			result.tile_set_texture(0, image)
+		else: # load from base64
+			var img = Image.new()
+			img.load_png_from_buffer(Marshalls.base64_to_raw(tileset.image))
+			image.set_data(img)
+
+		# props
+		var separation = Vector2(tileset.tileSeparationX, tileset.tileSeparationY)
+		var tileSize = Vector2(tileset.tileWidth, tileset.tileHeight)
+		# var tileCount = image.size
+
+		print(image)
+
+	return result
+

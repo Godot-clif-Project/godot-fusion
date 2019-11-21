@@ -44,19 +44,7 @@ func get_preset_name(preset):
 
 
 func get_import_options(preset):
-	return [
-		{
-			'name': 'image_flags',
-			'default_value': 0 if preset == PRESET_PIXEL_ART else Texture.FLAGS_DEFAULT,
-			'property_hint': PROPERTY_HINT_FLAGS,
-			'hint_string': 'Mipmaps,Repeat,Filter,Anisotropic,sRGB,Mirrored Repeat'
-		},
-		{
-			'name': 'embed_internal_images',
-			'default_value': true if preset == PRESET_PIXEL_ART else false
-		}
-	]
-
+	return []
 
 func get_option_visibility(option, options):
 	return true

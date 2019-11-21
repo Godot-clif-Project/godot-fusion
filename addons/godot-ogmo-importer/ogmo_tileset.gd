@@ -10,7 +10,7 @@
 #      "tileSeparationY": 0
 #    }
 tool
-extends TileSet
+extends Reference
 
 var label: String = ''
 var path: String = ''
@@ -22,15 +22,11 @@ var tileSeparationY: int = 0
 
 
 func build(options):
-	print(options)
+	var tileset = 
 	label = options.label
 	path = options.path
-	image = 
-	titleWidth = 0
-	titleHeight = 0
-	tileSeparationX = 0
-	tileSeparationY = 0
-	print(label)
+
+	ResourceSaver.save("res://my_res.tres", my_res)
 
 
 func compute_tres_file():
